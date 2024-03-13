@@ -30,7 +30,7 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
         {
             VideoSlider.value = (float)vp.frame / (float)vp.frameCount;
         }
-        if (VideoSlider.value >= 0.999 && isEnded == false)
+        if (VideoSlider.value >= 0.999 && isEnded == false && isSlide == false)
         {
             isEnded = true;
             am.ToTheFacts();

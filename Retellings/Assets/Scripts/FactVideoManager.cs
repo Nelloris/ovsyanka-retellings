@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class FactVideoManager : MonoBehaviour
+public class FactVideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
     #region Variables
     [Header("VideoManager Variables")]
@@ -11,7 +12,7 @@ public class FactVideoManager : MonoBehaviour
     [SerializeField] private AudioSource _as;
     [SerializeField] private Slider AudioSlider;
     [SerializeField] private GameObject videoGameObject;
-
+    [SerializeField] private UnityEvent onFactVideoEnded;
 
     Slider VideoSlider;
     bool isSlide = false;
@@ -30,10 +31,10 @@ public class FactVideoManager : MonoBehaviour
         {
             VideoSlider.value = (float)vp.frame / (float)vp.frameCount;
         }
-        if (VideoSlider.value >= 0.999 && isEnded == false)
+        if (VideoSlider.value >= 0.999 && isEnded == false && isSlide == false)
         {
             isEnded = true;
-            videoGameObject.SetActive(false);
+            onFactVideoEnded.Invoke();
         }
         if (VideoSlider.value < 0.999 && isEnded == true)
         {

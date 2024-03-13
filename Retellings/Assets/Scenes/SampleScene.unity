@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 420962439}
   - component: {fileID: 420962441}
   m_Layer: 5
-  m_Name: MainText
+  m_Name: mainText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 514212806}
   - component: {fileID: 514212807}
   m_Layer: 5
-  m_Name: Buttons
+  m_Name: factsIndicators
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1411,7 +1411,7 @@ GameObject:
   - component: {fileID: 615238986}
   - component: {fileID: 615238989}
   m_Layer: 5
-  m_Name: HomeButton
+  m_Name: homeButtonVideoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1552,6 +1552,161 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &717628326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 717628327}
+  - component: {fileID: 717628331}
+  - component: {fileID: 717628330}
+  - component: {fileID: 717628329}
+  - component: {fileID: 717628328}
+  m_Layer: 5
+  m_Name: videoFactButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &717628327
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717628326}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 999452347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.00003624, y: -0.000005722}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &717628328
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717628326}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26cdbd3637f6a8441b501c7afe14afe0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &717628329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717628326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 717628330}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1592890736}
+        m_TargetAssemblyTypeName: AnimManager, Assembly-CSharp
+        m_MethodName: VideoFactShow
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 861019257}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &717628330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717628326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -7661785740205135600, guid: 8d9df35b1e4dc494a96c6a999255602c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &717628331
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717628326}
+  m_CullTransparentMesh: 1
 --- !u!1 &719179108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,7 +1719,7 @@ GameObject:
   - component: {fileID: 719179111}
   - component: {fileID: 719179110}
   m_Layer: 5
-  m_Name: Preview
+  m_Name: PreviewPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1678,7 +1833,7 @@ GameObject:
   - component: {fileID: 730647482}
   - component: {fileID: 730647484}
   m_Layer: 5
-  m_Name: YearsText
+  m_Name: yearsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1777,7 +1932,7 @@ GameObject:
   - component: {fileID: 735352974}
   - component: {fileID: 735352977}
   m_Layer: 5
-  m_Name: AudioButton
+  m_Name: audioButtonVideoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1848,7 +2003,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1592890736}
         m_TargetAssemblyTypeName: AnimManager, Assembly-CSharp
-        m_MethodName: VolumeButton
+        m_MethodName: AnimationStateSwitch
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1282933715}
@@ -1930,7 +2085,7 @@ GameObject:
   - component: {fileID: 799603507}
   - component: {fileID: 799603506}
   m_Layer: 5
-  m_Name: AudioSlider
+  m_Name: audioSliderFactsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2042,13 +2197,14 @@ GameObject:
   - component: {fileID: 861019258}
   - component: {fileID: 861019260}
   - component: {fileID: 861019259}
+  - component: {fileID: 861019261}
   m_Layer: 5
-  m_Name: Video
+  m_Name: VideoFactPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &861019258
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2061,8 +2217,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1490467788}
   - {fileID: 1445006689}
+  - {fileID: 1490467788}
   m_Father: {fileID: 1345101499}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2105,6 +2261,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861019257}
   m_CullTransparentMesh: 1
+--- !u!95 &861019261
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861019257}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1fd84896f97523f4093e575e95bd7109, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &926372683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,7 +2296,7 @@ GameObject:
   - component: {fileID: 926372685}
   - component: {fileID: 926372687}
   m_Layer: 5
-  m_Name: MainLabel
+  m_Name: mainLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2512,7 +2690,7 @@ GameObject:
   - component: {fileID: 991081350}
   - component: {fileID: 991081349}
   m_Layer: 5
-  m_Name: Video
+  m_Name: VideoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2708,7 +2886,7 @@ GameObject:
   - component: {fileID: 999452348}
   - component: {fileID: 999452350}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Fact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2726,7 +2904,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1369217976}
+  - {fileID: 717628327}
   m_Father: {fileID: 2067643694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -2807,7 +2985,7 @@ GameObject:
   - component: {fileID: 1042206059}
   - component: {fileID: 1042206058}
   m_Layer: 5
-  m_Name: Button
+  m_Name: factsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2939,7 +3117,7 @@ GameObject:
   - component: {fileID: 1076669513}
   - component: {fileID: 1076669515}
   m_Layer: 5
-  m_Name: FactsLabel
+  m_Name: factsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3037,7 +3215,7 @@ GameObject:
   - component: {fileID: 1113414601}
   - component: {fileID: 1113414603}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Fact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3136,7 +3314,7 @@ GameObject:
   - component: {fileID: 1127016082}
   - component: {fileID: 1127016081}
   m_Layer: 5
-  m_Name: AudioButton
+  m_Name: audioButtonFactsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3229,7 +3407,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1592890736}
         m_TargetAssemblyTypeName: AnimManager, Assembly-CSharp
-        m_MethodName: VolumeButton
+        m_MethodName: AnimationStateSwitch
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 799603506}
@@ -3366,7 +3544,7 @@ GameObject:
   - component: {fileID: 1194128233}
   - component: {fileID: 1194128232}
   m_Layer: 5
-  m_Name: HomeButton
+  m_Name: homeButtonFactsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3464,6 +3642,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1592890736}
+        m_TargetAssemblyTypeName: AnimManager, Assembly-CSharp
+        m_MethodName: VideoFactHide
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 861019257}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3653,7 +3843,7 @@ GameObject:
   - component: {fileID: 1223389148}
   - component: {fileID: 1223389151}
   m_Layer: 5
-  m_Name: Button
+  m_Name: previewButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3806,7 +3996,7 @@ GameObject:
   - component: {fileID: 1282933714}
   - component: {fileID: 1282933715}
   m_Layer: 5
-  m_Name: AudioSlider
+  m_Name: audioSliderVideoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4000,7 +4190,7 @@ GameObject:
   - component: {fileID: 1341649177}
   - component: {fileID: 1341649179}
   m_Layer: 5
-  m_Name: BookIcon
+  m_Name: bookIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4115,7 +4305,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1402206976}
   - {fileID: 536337033}
   - {fileID: 861019258}
   m_Father: {fileID: 2114867632}
@@ -4199,138 +4388,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1369217975
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1369217976}
-  - component: {fileID: 1369217979}
-  - component: {fileID: 1369217978}
-  - component: {fileID: 1369217977}
-  m_Layer: 5
-  m_Name: Button (Legacy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1369217976
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1369217975}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 999452347}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1369217977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1369217975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1369217978}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1592890736}
-        m_TargetAssemblyTypeName: AnimManager, Assembly-CSharp
-        m_MethodName: VideoFactShow
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1369217978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1369217975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -7661785740205135600, guid: 8d9df35b1e4dc494a96c6a999255602c, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1369217979
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1369217975}
-  m_CullTransparentMesh: 1
 --- !u!1 &1402206975
 GameObject:
   m_ObjectHideFlags: 0
@@ -4344,7 +4401,7 @@ GameObject:
   - component: {fileID: 1402206979}
   - component: {fileID: 1402206977}
   m_Layer: 5
-  m_Name: VideoSlider
+  m_Name: videoSliderFactsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4365,11 +4422,11 @@ RectTransform:
   - {fileID: 1137973553}
   - {fileID: 1802507243}
   - {fileID: 729244698}
-  m_Father: {fileID: 1345101499}
+  m_Father: {fileID: 2114867632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.000061035, y: 80}
+  m_AnchoredPosition: {x: -0.000061035156, y: 80}
   m_SizeDelta: {x: 555.08, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1402206977
@@ -4461,6 +4518,21 @@ MonoBehaviour:
   _as: {fileID: 1490467787}
   AudioSlider: {fileID: 799603507}
   videoGameObject: {fileID: 861019257}
+  onFactVideoEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1592890736}
+        m_TargetAssemblyTypeName: AnimManager, Assembly-CSharp
+        m_MethodName: VideoFactHide
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 861019257}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1404341010
 GameObject:
   m_ObjectHideFlags: 0
@@ -4644,7 +4716,7 @@ GameObject:
   - component: {fileID: 1418443031}
   - component: {fileID: 1418443033}
   m_Layer: 5
-  m_Name: FactsIcons
+  m_Name: factsIcons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4741,8 +4813,9 @@ GameObject:
   - component: {fileID: 1445006692}
   - component: {fileID: 1445006691}
   - component: {fileID: 1445006690}
+  - component: {fileID: 1445006693}
   m_Layer: 5
-  m_Name: CloseVideo
+  m_Name: closeVideoFactButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4764,7 +4837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 579.9601, y: 340.06003}
+  m_AnchoredPosition: {x: 579.95996, y: 340.06003}
   m_SizeDelta: {x: 60.0798, y: 60.0799}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445006690
@@ -4814,10 +4887,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1592890736}
         m_TargetAssemblyTypeName: AnimManager, Assembly-CSharp
         m_MethodName: VideoFactHide
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 861019257}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4861,6 +4934,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445006688}
   m_CullTransparentMesh: 1
+--- !u!95 &1445006693
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445006688}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26cdbd3637f6a8441b501c7afe14afe0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1490467786
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,31 +5156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   previewPanel: {fileID: 719179108}
-  bookIconAnimator: {fileID: 1341649179}
-  previewButtonAnimator: {fileID: 1223389151}
   infoPanel: {fileID: 2084618538}
-  mainLabelAnimator: {fileID: 926372687}
-  yearsAnimator: {fileID: 730647484}
-  textAnimator: {fileID: 420962441}
-  infoButtonAnimator: {fileID: 1910532443}
-  factsIconAnimator: {fileID: 1418443033}
-  factsTextAnimator: {fileID: 1076669515}
   videoPanel: {fileID: 991081347}
-  videoSliderAnimatorVideoPanel: {fileID: 1684345896}
-  audioSliderAnimatorVideoPanel: {fileID: 1282933715}
-  homeButtonAnimatorVideoPanel: {fileID: 615238989}
-  audioButtonAnimatorVideoPanel: {fileID: 735352977}
   factsPanel: {fileID: 2114867631}
-  factsButtons: {fileID: 514212807}
-  factsIcons:
-  - {fileID: 1113414603}
-  - {fileID: 999452350}
-  - {fileID: 1742689820}
-  audioSliderAnimatorFactsPanel: {fileID: 799603506}
-  videoSliderAnimatorFactsPanel: {fileID: 1402206977}
-  homeButtonAnimatorFactsPanel: {fileID: 1194128232}
-  audioButtonAnimatorFactsPanel: {fileID: 1127016081}
-  videoFactsButton: {fileID: 861019257}
 --- !u!4 &1592890737
 Transform:
   m_ObjectHideFlags: 0
@@ -5189,7 +5262,7 @@ GameObject:
   - component: {fileID: 1684345895}
   - component: {fileID: 1684345896}
   m_Layer: 5
-  m_Name: VideoSlider
+  m_Name: videoSliderVideoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5319,7 +5392,7 @@ GameObject:
   - component: {fileID: 1742689818}
   - component: {fileID: 1742689820}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Fact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5529,7 +5602,7 @@ GameObject:
   - component: {fileID: 1910532440}
   - component: {fileID: 1910532443}
   m_Layer: 5
-  m_Name: Button
+  m_Name: infoButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6005,7 +6078,7 @@ GameObject:
   - component: {fileID: 2084618541}
   - component: {fileID: 2084618540}
   m_Layer: 5
-  m_Name: Info
+  m_Name: InfoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6023,8 +6096,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 730647481}
   - {fileID: 926372684}
+  - {fileID: 730647481}
   - {fileID: 420962438}
   - {fileID: 1910532439}
   - {fileID: 1418443029}
@@ -6087,7 +6160,7 @@ GameObject:
   - component: {fileID: 2114867634}
   - component: {fileID: 2114867633}
   m_Layer: 5
-  m_Name: Facts
+  m_Name: FactsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6107,6 +6180,7 @@ RectTransform:
   m_Children:
   - {fileID: 1345101499}
   - {fileID: 799603508}
+  - {fileID: 1402206976}
   - {fileID: 1194128231}
   - {fileID: 1127016080}
   - {fileID: 514212805}
@@ -6166,8 +6240,9 @@ GameObject:
   - component: {fileID: 2135068968}
   - component: {fileID: 2135068970}
   - component: {fileID: 2135068969}
+  - component: {fileID: 2135068971}
   m_Layer: 5
-  m_Name: Video
+  m_Name: VideoPanelPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6228,6 +6303,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135068967}
   m_CullTransparentMesh: 1
+--- !u!95 &2135068971
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135068967}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1fd84896f97523f4093e575e95bd7109, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

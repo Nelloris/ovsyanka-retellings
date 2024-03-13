@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -7,123 +8,183 @@ using UnityEngine.Video;
 public class AnimManager : MonoBehaviour
 {
     #region Variables
-    [Header("previewPanel panel animators")]
+    [Header("AnimationManager Variables")]
     [SerializeField] private GameObject previewPanel;
-    [Space][SerializeField] private Animator bookIconAnimator;
-    [SerializeField] private Animator previewButtonAnimator;
-    
-    [Header("infoPanel panel animators")]
+    private Animator previewButtonAnimator;
+    private Animator bookIconAnimator;
+
     [SerializeField] private GameObject infoPanel;
-    [Space][SerializeField] private Animator mainLabelAnimator;
-    [SerializeField] private Animator yearsAnimator;
-    [SerializeField] private Animator textAnimator;
-    [SerializeField] private Animator infoButtonAnimator;
-    [SerializeField] private Animator factsIconAnimator;
-    [SerializeField] private Animator factsTextAnimator;
+    private Animator mainLabelAnimator;
+    private Animator yearsTextAnimator;
+    private Animator mainTextAnimator;
+    private Animator infoButtonAnimator;
+    private Animator factsIconsAnimator;
+    private Animator factsTextAnimator;
 
-    [Header("videoPanel Panel animators")]
     [SerializeField] private GameObject videoPanel;
-    [Space][SerializeField] private Animator videoSliderAnimatorVideoPanel;
-    [SerializeField] private Animator audioSliderAnimatorVideoPanel;
-    [SerializeField] private Animator homeButtonAnimatorVideoPanel;
-    [SerializeField] private Animator audioButtonAnimatorVideoPanel;
+    private Animator videoSliderAnimatorVideoPanel;
+    private Animator homeButtonAnimatorVideoPanel;
+    private Animator audioButtonAnimatorVideoPanel;
+    private Animator videoAnimator;
 
-    [Header("Panel panel animators")]
     [SerializeField] private GameObject factsPanel;
-    [Space][SerializeField] private Animator factsButtons;
-    [SerializeField] private Animator[] factsIcons;
-    [Space] [SerializeField] private Animator audioSliderAnimatorFactsPanel;
-    [SerializeField] private Animator videoSliderAnimatorFactsPanel;
-    [SerializeField] private Animator homeButtonAnimatorFactsPanel;
-    [SerializeField] private Animator audioButtonAnimatorFactsPanel;
-    [SerializeField] private GameObject videoFactsButton;
+    private Animator factsIndicatorsAnimator;
+    private Animator[] factsAnimator;
+    private Animator videoSliderAnimatorFactsPanel;
+    private Animator homeButtonAnimatorFactsPanel;
+    private Animator audioButtonAnimatorFactsPanel;
+    private Animator videoFactAnimator;
+    private Animator videoFactButtonAnimator;
+    private Animator closeVideoFactButtonAnimator;
 
-
-    private int CurrentScene = 0;
+    private Animator[] previewPanelAnimators;
+    private Animator[] infoPanelAnimators;
+    private Animator[] videoPanelAnimators;
+    private Animator[] factsPanelAnimators;
+    [ReadOnly(true)] private int CurrentScene = 0;
     #endregion
 
     #region Main
+    #region MainMethods
+    private void Start()
+    {
+        previewButtonAnimator = GameObject.Find("previewButton").GetComponent<Animator>();
+        bookIconAnimator = GameObject.Find("bookIcon").GetComponent<Animator>();
+
+        infoPanel.SetActive(true);
+        mainLabelAnimator = GameObject.Find("mainLabel").GetComponent<Animator>();
+        yearsTextAnimator = GameObject.Find("yearsText").GetComponent<Animator>();
+        mainTextAnimator = GameObject.Find("mainText").GetComponent<Animator>();
+        infoButtonAnimator = GameObject.Find("infoButton").GetComponent<Animator>();
+        factsIconsAnimator = GameObject.Find("factsIcons").GetComponent<Animator>();
+        factsTextAnimator = GameObject.Find("factsText").GetComponent<Animator>();
+        infoPanel.SetActive(false);
+
+        videoPanel.SetActive(true);
+        videoSliderAnimatorVideoPanel = GameObject.Find("videoSliderVideoPanel").GetComponent<Animator>();
+        homeButtonAnimatorVideoPanel = GameObject.Find("homeButtonVideoPanel").GetComponent<Animator>();
+        audioButtonAnimatorVideoPanel = GameObject.Find("audioButtonVideoPanel").GetComponent<Animator>();
+        videoAnimator = GameObject.Find("VideoPanelPlayer").GetComponent<Animator>();
+        videoPanel.SetActive(false);
+
+        factsPanel.SetActive(true);
+        factsIndicatorsAnimator = GameObject.Find("factsIndicators").GetComponent<Animator>();
+        factsAnimator = GameObject.Find("Content").GetComponentsInChildren<Animator>();
+        videoSliderAnimatorFactsPanel = GameObject.Find("videoSliderFactsPanel").GetComponent<Animator>();
+        homeButtonAnimatorFactsPanel = GameObject.Find("homeButtonFactsPanel").GetComponent<Animator>();
+        audioButtonAnimatorFactsPanel = GameObject.Find("audioButtonFactsPanel").GetComponent<Animator>();
+        closeVideoFactButtonAnimator = GameObject.Find("closeVideoFactButton").GetComponent<Animator>();
+        videoFactButtonAnimator = GameObject.Find("videoFactButton").GetComponent<Animator>();
+        videoFactAnimator = GameObject.Find("VideoFactPlayer").GetComponent<Animator>();
+        videoFactAnimator.gameObject.SetActive(false);
+        factsPanel.SetActive(false);
+
+        previewPanelAnimators = new Animator[] { 
+            bookIconAnimator, 
+            previewButtonAnimator };
+
+        infoPanelAnimators = new Animator[] { 
+            mainLabelAnimator, 
+            yearsTextAnimator, 
+            mainTextAnimator, 
+            infoButtonAnimator, 
+            factsIconsAnimator, 
+            factsTextAnimator };
+
+        videoPanelAnimators = new Animator[] { 
+            videoSliderAnimatorVideoPanel, 
+            homeButtonAnimatorVideoPanel, 
+            audioButtonAnimatorVideoPanel, 
+            videoAnimator };
+
+        factsPanelAnimators = new Animator[] { 
+            factsIndicatorsAnimator, 
+            homeButtonAnimatorFactsPanel, 
+            audioButtonAnimatorFactsPanel,
+            videoFactButtonAnimator};
+    }
+    #endregion
+
     #region PanelSwitching
     public void ToTheInfo()
     {
         CurrentScene = 1;
         
         //Hiding previous UI elements and panel
-        StartCoroutine(AnimationStateSwitch(bookIconAnimator));
-        StartCoroutine(AnimationStateSwitch (previewButtonAnimator));
+        foreach (Animator an in previewPanelAnimators)
+        {
+            AnimationStateSwitch(an);
+        }
 
         //Showing next UI elements and panel
         infoPanel.SetActive(true);
-        StartCoroutine(AnimationStateSwitch(mainLabelAnimator));
-        StartCoroutine(AnimationStateSwitch(yearsAnimator));
-        StartCoroutine(AnimationStateSwitch(textAnimator));
-        StartCoroutine(AnimationStateSwitch(infoButtonAnimator));
-        StartCoroutine(AnimationStateSwitch(factsIconAnimator));
-        StartCoroutine(AnimationStateSwitch(factsTextAnimator));
+        foreach (Animator an in infoPanelAnimators)
+        {
+            AnimationStateSwitch(an);
+        }
     }
     public void ToTheVideo()
     {
         CurrentScene = 2;
-        
+
         //Hiding previous UI elements and panel
-        StartCoroutine(AnimationStateSwitch(mainLabelAnimator));
-        StartCoroutine(AnimationStateSwitch(yearsAnimator));
-        StartCoroutine(AnimationStateSwitch(textAnimator));
-        StartCoroutine(AnimationStateSwitch(infoButtonAnimator));
-        StartCoroutine(AnimationStateSwitch(factsIconAnimator));
-        StartCoroutine(AnimationStateSwitch(factsTextAnimator));
+        foreach (Animator an in infoPanelAnimators)
+        {
+            AnimationStateSwitch(an);
+        }
         StartCoroutine(PanelSwitchDelayed(infoPanel, 0.5f));
 
         //Showing next UI elements and panel
         videoPanel.SetActive(true);
-        StartCoroutine(AnimationStateSwitch(homeButtonAnimatorVideoPanel));
-        StartCoroutine(AnimationStateSwitch(videoSliderAnimatorVideoPanel));
-        StartCoroutine(AnimationStateSwitch(audioButtonAnimatorVideoPanel));
-        
+        foreach (Animator an in videoPanelAnimators)
+        {
+            AnimationStateSwitch(an);
+        }
+
     }
     public void ToTheFacts()
     {
         if (CurrentScene == 1)
         {
-            
+
             //Hiding previous UI elements and panel
-            StartCoroutine(AnimationStateSwitch(mainLabelAnimator));
-            StartCoroutine(AnimationStateSwitch(yearsAnimator));
-            StartCoroutine(AnimationStateSwitch(textAnimator));
-            StartCoroutine(AnimationStateSwitch(infoButtonAnimator));
-            StartCoroutine(AnimationStateSwitch(factsIconAnimator));
-            StartCoroutine(AnimationStateSwitch(factsTextAnimator));
+            foreach (Animator an in infoPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
             StartCoroutine(PanelSwitchDelayed(infoPanel, 0.5f));
 
             //Showing next UI elements and panel
             factsPanel.SetActive(true);
-            StartCoroutine(AnimationStateSwitch(factsButtons));
-            for (int i = 0; i < factsIcons.Length; i++)
+            foreach (Animator an in factsPanelAnimators)
             {
-                var icon = factsIcons[i];
-                StartCoroutine(AnimationStateSwitch(icon));
+                AnimationStateSwitch(an);
             }
-            StartCoroutine(AnimationStateSwitch(audioButtonAnimatorFactsPanel));
-            StartCoroutine(AnimationStateSwitch(homeButtonAnimatorFactsPanel));
+            for (int i = 0; i < factsAnimator.Length; i++)
+            {
+                var icon = factsAnimator[i];
+                AnimationStateSwitch(icon);
+            }
         }
         if (CurrentScene == 2)
         {
-            //Hiding previous UI elements and panel
-            StartCoroutine(AnimationStateSwitch(homeButtonAnimatorVideoPanel));
-            StartCoroutine(AnimationStateSwitch(videoSliderAnimatorVideoPanel));
-            StartCoroutine(AnimationStateSwitch(audioButtonAnimatorVideoPanel));
+            foreach (Animator an in videoPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
             StartCoroutine(PanelSwitchDelayed(videoPanel, 0.2f));
 
             //Showing next UI elements and panel
             factsPanel.SetActive(true);
-            StartCoroutine(AnimationStateSwitch(factsButtons));
-            for (int i = 0; i < factsIcons.Length; i++)
+            foreach (Animator an in factsPanelAnimators)
             {
-                var icon = factsIcons[i];
-                StartCoroutine(AnimationStateSwitch(icon));
+                AnimationStateSwitch(an);
             }
-            StartCoroutine(AnimationStateSwitch(audioButtonAnimatorFactsPanel));
-            StartCoroutine(AnimationStateSwitch(homeButtonAnimatorFactsPanel));
+            for (int i = 0; i < factsAnimator.Length; i++)
+            {
+                var icon = factsAnimator[i];
+                AnimationStateSwitch(icon);
+            }
         }
         CurrentScene = 3;
     }
@@ -132,63 +193,70 @@ public class AnimManager : MonoBehaviour
         if (CurrentScene == 2)
         {
             //Hiding previous UI elements and panel
-            StartCoroutine(AnimationStateSwitch(homeButtonAnimatorVideoPanel));
-            StartCoroutine(AnimationStateSwitch(audioButtonAnimatorVideoPanel));
+            foreach (Animator an in videoPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
             StartCoroutine(PanelSwitchDelayed(videoPanel, 0.5f));
 
             //Showing next UI elements and panel
             previewPanel.SetActive(true);
-            StartCoroutine(AnimationStateSwitch(bookIconAnimator));
-            StartCoroutine(AnimationStateSwitch(previewButtonAnimator));
+            foreach (Animator an in previewPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
         }
         if (CurrentScene == 3)
         {
             //Hiding previous UI elements and panel
-            VideoFactHide();
-            StartCoroutine(AnimationStateSwitch(factsButtons));
-            for (int i = 0; i < factsIcons.Length; i++)
+            foreach (Animator an in factsPanelAnimators)
             {
-                var icon = factsIcons[i];
-                StartCoroutine(AnimationStateSwitch(icon));
+                AnimationStateSwitch(an);
             }
-            StartCoroutine(AnimationStateSwitch(audioButtonAnimatorFactsPanel));
-            StartCoroutine(AnimationStateSwitch(homeButtonAnimatorFactsPanel));
+            for (int i = 0; i < factsAnimator.Length; i++)
+            {
+                var icon = factsAnimator[i];
+                AnimationStateSwitch(icon);
+            }
             StartCoroutine(PanelSwitchDelayed(factsPanel, 0.5f));
 
             //Showing next UI elements and panel
             previewPanel.SetActive(true);
-            StartCoroutine(AnimationStateSwitch(bookIconAnimator));
-            StartCoroutine(AnimationStateSwitch(previewButtonAnimator));
+            foreach (Animator an in previewPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
         }
         CurrentScene = 0;
     }
     #endregion
 
     #region VideoFact
-    public void VideoFactShow()
+    public void VideoFactShow(GameObject videoFactVideo)
     {
-        videoFactsButton.SetActive(true);
-        StartCoroutine(AnimationStateSwitch(videoSliderAnimatorFactsPanel));
+        videoFactVideo.SetActive(true);
+        AnimationStateSwitch(videoFactAnimator);
+        AnimationStateSwitch(videoSliderAnimatorFactsPanel);
+        AnimationStateSwitch(closeVideoFactButtonAnimator);
     }
     
-    public void VideoFactHide()
+    public void VideoFactHide(GameObject videoFactVideo)
     {
-        videoFactsButton.SetActive(false);
-        StartCoroutine(AnimationStateSwitch(videoSliderAnimatorFactsPanel));
+        if (videoFactAnimator.GetBool("Is") == true)
+        {
+            StartCoroutine(PanelSwitchDelayed(videoFactVideo, 0.3f));
+            AnimationStateSwitch(videoFactAnimator);
+            AnimationStateSwitch(videoSliderAnimatorFactsPanel);
+            AnimationStateSwitch(closeVideoFactButtonAnimator);
+        }
     }
 
     #endregion
 
     #region Other
-    public void VolumeButton(Animator an)
-    {
-        StartCoroutine(AnimationStateSwitch(an));
-    }
-
-    IEnumerator AnimationStateSwitch(Animator an)
+    public void AnimationStateSwitch(Animator an)
     {
         if (an.GetBool("Is") == false) { an.SetBool("Is", true); } else { an.SetBool("Is", false); }
-        yield return null;
     }
 
     IEnumerator PanelSwitchDelayed(GameObject go, float Delay)
