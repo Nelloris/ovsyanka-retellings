@@ -9,7 +9,9 @@ public class ScrollSnap : MonoBehaviour
     [SerializeField] private Color[] colors;
     [SerializeField] private GameObject scrollbar, imageContent;
 
-    [SerializeField] private float scroll_pos = 0;
+    private float scroll_pos = 0;
+
+    private IdleStateManager ism;
     float[] pos;
     private bool runIt = false;
     private float time;
@@ -18,7 +20,11 @@ public class ScrollSnap : MonoBehaviour
     #endregion
 
     #region Main
-    void Update()
+    private void Start()
+    {
+        ism = GameObject.Find("IdleStateManager").GetComponent<IdleStateManager>();
+    }
+    void FixedUpdate()
     {
         pos = new float[transform.childCount];
         float distance = 1f / (pos.Length - 1f);
@@ -42,6 +48,7 @@ public class ScrollSnap : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            ism.UpdateIdleState();
             scroll_pos = scrollbar.GetComponent<Scrollbar>().value;
         }
         else
@@ -50,7 +57,7 @@ public class ScrollSnap : MonoBehaviour
             {
                 if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
                 {
-                    scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.02f);
+                    scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.1f);
                 }
             }
         }
@@ -86,7 +93,7 @@ public class ScrollSnap : MonoBehaviour
         {
             if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
             {
-                scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[btnNumber], 1f * Time.deltaTime);
+                scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[btnNumber], 3f * Time.deltaTime);
             }
         }
 
@@ -113,6 +120,7 @@ public class ScrollSnap : MonoBehaviour
     }
     public void OnElementClicked(int targtPos)
     {
+        ism.UpdateIdleState();
         scroll_pos = (pos[targtPos]);
     }
     #endregion

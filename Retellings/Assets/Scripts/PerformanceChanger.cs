@@ -7,7 +7,7 @@ public class PerformanceChanger : MonoBehaviour
     #region Variables
     [SerializeField] private int targetFrameRate = 30;
     [SerializeField] private int vSyncCount = 0;
-    public Text Text;
+    public Text textFps;
     private Dictionary<int, string> CachedNumberStrings = new();
     private int[] _frameRateSamples;
     private int _cacheNumbersAmount = 300;
@@ -54,7 +54,7 @@ public class PerformanceChanger : MonoBehaviour
 
         // Assign to UI
         {
-            Text.text = _currentAveraged switch
+            textFps.text = _currentAveraged switch
             {
                 var x when x >= 0 && x < _cacheNumbersAmount => CachedNumberStrings[x],
                 var x when x >= _cacheNumbersAmount => $"> {_cacheNumbersAmount}",

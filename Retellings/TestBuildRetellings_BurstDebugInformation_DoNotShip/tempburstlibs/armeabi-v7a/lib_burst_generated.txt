@@ -25,7 +25,6 @@ Library: C:\Users\DDAci\Documents\GitHub\ovsyanka-retellings\Retellings\Temp\Bur
 --assembly-defines=UnityEngine;
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\DDAci\Documents\GitHub\ovsyanka-retellings\Retellings\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2023.3.0b7/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\DDAci\Documents\GitHub\ovsyanka-retellings\Retellings\Library\Burst
 --output=C:\Users\DDAci\Documents\GitHub\ovsyanka-retellings\Retellings\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated

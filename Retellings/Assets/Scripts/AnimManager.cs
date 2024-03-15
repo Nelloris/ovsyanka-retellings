@@ -1,10 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Video;
 
 public class AnimManager : MonoBehaviour
 {
@@ -42,13 +37,16 @@ public class AnimManager : MonoBehaviour
     private Animator[] infoPanelAnimators;
     private Animator[] videoPanelAnimators;
     private Animator[] factsPanelAnimators;
-    [ReadOnly(true)] private int CurrentScene = 0;
+    private int CurrentScene = 0;
+    private IdleStateManager ism;
     #endregion
 
     #region Main
     #region MainMethods
     private void Start()
     {
+        ism = GameObject.Find("IdleStateManager").GetComponent<IdleStateManager>();
+
         previewButtonAnimator = GameObject.Find("previewButton").GetComponent<Animator>();
         bookIconAnimator = GameObject.Find("bookIcon").GetComponent<Animator>();
 
@@ -101,13 +99,15 @@ public class AnimManager : MonoBehaviour
         factsPanelAnimators = new Animator[] { 
             factsIndicatorsAnimator, 
             homeButtonAnimatorFactsPanel, 
-            audioButtonAnimatorFactsPanel };
+            audioButtonAnimatorFactsPanel,
+            videoFactButtonAnimator};
     }
     #endregion
 
     #region PanelSwitching
     public void ToTheInfo()
     {
+        ism.UpdateIdleState();
         CurrentScene = 1;
         
         //Hiding previous UI elements and panel
@@ -125,6 +125,7 @@ public class AnimManager : MonoBehaviour
     }
     public void ToTheVideo()
     {
+        ism.UpdateIdleState();
         CurrentScene = 2;
 
         //Hiding previous UI elements and panel
@@ -144,9 +145,9 @@ public class AnimManager : MonoBehaviour
     }
     public void ToTheFacts()
     {
+        ism.UpdateIdleState();
         if (CurrentScene == 1)
         {
-
             //Hiding previous UI elements and panel
             foreach (Animator an in infoPanelAnimators)
             {
@@ -192,6 +193,7 @@ public class AnimManager : MonoBehaviour
     }
     public void ToThePreview()
     {
+        ism.UpdateIdleState();
         if (CurrentScene == 2)
         {
             //Hiding previous UI elements and panel
@@ -237,6 +239,7 @@ public class AnimManager : MonoBehaviour
     #region VideoFact
     public void VideoFactShow(GameObject videoFactVideo)
     {
+        ism.UpdateIdleState();
         videoFactVideo.SetActive(true);
         AnimationStateSwitch(videoFactAnimator);
         AnimationStateSwitch(videoSliderAnimatorFactsPanel);
@@ -247,6 +250,7 @@ public class AnimManager : MonoBehaviour
     {
         if (videoFactAnimator.GetBool("Is") == true)
         {
+            ism.UpdateIdleState();
             StartCoroutine(PanelSwitchDelayed(videoFactVideo, 0.3f));
             AnimationStateSwitch(videoFactAnimator);
             AnimationStateSwitch(videoSliderAnimatorFactsPanel);
