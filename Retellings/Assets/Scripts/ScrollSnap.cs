@@ -9,7 +9,7 @@ public class ScrollSnap : MonoBehaviour
     [SerializeField] private Color[] colors;
     [SerializeField] private GameObject scrollbar, imageContent;
 
-    private float scroll_pos = 0;
+    [SerializeField] private float scroll_pos = 0;
     float[] pos;
     private bool runIt = false;
     private float time;
@@ -110,6 +110,10 @@ public class ScrollSnap : MonoBehaviour
                 runIt = true;
             }
         }
+    }
+    public void OnElementClicked(int targtPos)
+    {
+        scroll_pos = (pos[targtPos]);
     }
     #endregion
 }

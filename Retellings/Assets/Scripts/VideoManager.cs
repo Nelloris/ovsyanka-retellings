@@ -11,7 +11,7 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     [SerializeField] private AudioSource _as;
     [SerializeField] private Slider AudioSlider;
     [SerializeField] private AnimManager am;
-    
+
     Slider VideoSlider;
     bool isSlide = false;
     bool isEnded { set; get; } = false;
@@ -21,7 +21,6 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     void Start()
     {
         VideoSlider = GetComponent<Slider>();
-        Application.targetFrameRate = 144;
     }
 
     void FixedUpdate()
@@ -38,6 +37,20 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
         if (VideoSlider.value < 0.999 && isEnded == true)
         {
             isEnded = false;
+        }
+    }
+
+    public void PlayButton()
+    {
+        if (vp.isPlaying)
+        {
+            vp.Pause();
+            isSlide = true;
+        }
+        else
+        {
+            isSlide = false;
+            vp.Play();
         }
     }
 

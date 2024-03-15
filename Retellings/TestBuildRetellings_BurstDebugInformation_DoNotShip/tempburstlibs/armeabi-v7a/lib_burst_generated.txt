@@ -1,4 +1,4 @@
-Library: C:\Users\DDAci\Documents\GitHub\Retellings-ovsyanka\Retellings\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
+Library: C:\Users\DDAci\Documents\GitHub\ovsyanka-retellings\Retellings\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
 --platform=Android
 --backend=burst-llvm-16
 --target=ARMV7A_NEON32
@@ -24,10 +24,11 @@ Library: C:\Users\DDAci\Documents\GitHub\Retellings-ovsyanka\Retellings\Temp\Bur
 --assembly-defines=Unity.Mathematics;
 --assembly-defines=UnityEngine;
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=C:\Users\DDAci\Documents\GitHub\Retellings-ovsyanka\Retellings\Temp\Burst
+--temp-folder=C:\Users\DDAci\Documents\GitHub\ovsyanka-retellings\Retellings\Temp\Burst
+--debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2023.3.0b7/Editor/Data/PlaybackEngines/AndroidPlayer
---decode-folder=C:\Users\DDAci\Documents\GitHub\Retellings-ovsyanka\Retellings\Library\Burst
---output=C:\Users\DDAci\Documents\GitHub\Retellings-ovsyanka\Retellings\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
+--decode-folder=C:\Users\DDAci\Documents\GitHub\ovsyanka-retellings\Retellings\Library\Burst
+--output=C:\Users\DDAci\Documents\GitHub\ovsyanka-retellings\Retellings\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10

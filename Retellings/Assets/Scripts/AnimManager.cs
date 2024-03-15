@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -100,8 +101,7 @@ public class AnimManager : MonoBehaviour
         factsPanelAnimators = new Animator[] { 
             factsIndicatorsAnimator, 
             homeButtonAnimatorFactsPanel, 
-            audioButtonAnimatorFactsPanel,
-            videoFactButtonAnimator};
+            audioButtonAnimatorFactsPanel };
     }
     #endregion
 
@@ -156,6 +156,7 @@ public class AnimManager : MonoBehaviour
 
             //Showing next UI elements and panel
             factsPanel.SetActive(true);
+            AnimationStateSwitch(videoFactButtonAnimator);
             foreach (Animator an in factsPanelAnimators)
             {
                 AnimationStateSwitch(an);
@@ -176,6 +177,7 @@ public class AnimManager : MonoBehaviour
 
             //Showing next UI elements and panel
             factsPanel.SetActive(true);
+            AnimationStateSwitch(videoFactButtonAnimator);
             foreach (Animator an in factsPanelAnimators)
             {
                 AnimationStateSwitch(an);
@@ -213,6 +215,7 @@ public class AnimManager : MonoBehaviour
             {
                 AnimationStateSwitch(an);
             }
+            AnimationStateSwitch(videoFactButtonAnimator);
             for (int i = 0; i < factsAnimator.Length; i++)
             {
                 var icon = factsAnimator[i];
@@ -257,6 +260,7 @@ public class AnimManager : MonoBehaviour
     public void AnimationStateSwitch(Animator an)
     {
         if (an.GetBool("Is") == false) { an.SetBool("Is", true); } else { an.SetBool("Is", false); }
+        
     }
 
     IEnumerator PanelSwitchDelayed(GameObject go, float Delay)
