@@ -85,7 +85,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4971274354429528313}
   - component: {fileID: 1806132072021464790}
-  - component: {fileID: 8254982436505044898}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -122,36 +121,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528264355117152978}
   m_CullTransparentMesh: 1
---- !u!114 &8254982436505044898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528264355117152978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Content: {fileID: 653427608407516736}
-  m_Horizontal: 1
-  m_Vertical: 0
-  m_MovementType: 1
-  m_Elasticity: 0.1
-  m_Inertia: 1
-  m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
-  m_Viewport: {fileID: 9117666656255047712}
-  m_HorizontalScrollbar: {fileID: 3230444212469475397}
-  m_VerticalScrollbar: {fileID: 0}
-  m_HorizontalScrollbarVisibility: 2
-  m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: -3
-  m_VerticalScrollbarSpacing: -3
-  m_OnValueChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1166218892071257645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1782,7 +1751,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 443215370574408683}
-  - component: {fileID: 4769399422245689598}
   - component: {fileID: 6957034984135786108}
   - component: {fileID: 571109801125440253}
   m_Layer: 5
@@ -1814,37 +1782,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000061035156, y: 80}
   m_SizeDelta: {x: 555.08, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4769399422245689598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5648007238405040110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba4199ca65d7bae4c9675f2d64c63e02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vp: {fileID: 3673246949782540656}
-  _as: {fileID: 4914268599295765586}
-  AudioSlider: {fileID: 6330350679575882372}
-  videoGameObject: {fileID: 6758596301119940980}
-  onFactVideoEnded:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AnimManager, Assembly-CSharp
-        m_MethodName: VideoFactHide
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 6758596301119940980}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6957034984135786108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3028,6 +2965,9 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   scrollbar: {fileID: 4980392157576038960}
   imageContent: {fileID: 1166218892071257645}
+  swipeListener: {fileID: 0}
+  currentScrollPosition: 0
+  scroll_pos: 0
 --- !u!1 &8692883787266751001
 GameObject:
   m_ObjectHideFlags: 0

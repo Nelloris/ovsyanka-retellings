@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
@@ -9,13 +11,18 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     [Header("VideoManager Variables")]
     [SerializeField] private VideoPlayer vp;
     [SerializeField] private AudioSource _as;
-    [SerializeField] private Slider AudioSlider;
     [SerializeField] private AnimManager am;
+    [SerializeField] private UnityEvent _onEnd;
+    [SerializeField] private Image _image;
+    [SerializeField] private Sprite[] sprite;  
 
+    private int counter;
+    private float _videoProgressOnPointerDown;
     private IdleStateManager ism;
     Slider VideoSlider;
     bool isSlide = false;
     bool isEnded { set; get; } = false;
+    bool isStopped;
     #endregion
 
     #region Main
@@ -34,7 +41,7 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
         if (VideoSlider.value >= 0.999 && isEnded == false && isSlide == false)
         {
             isEnded = true;
-            am.ToTheFacts();
+            _onEnd.Invoke();
         }
         if (VideoSlider.value < 0.999 && isEnded == true)
         {
@@ -44,14 +51,18 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
 
     public void PlayButton()
     {
+        counter++;
+        _image.sprite = sprite[counter % 2];
         ism.UpdateIdleState();
         if (vp.isPlaying)
         {
             vp.Pause();
             isSlide = true;
+            isStopped = true;
         }
         else
         {
+            isStopped = false;
             isSlide = false;
             vp.Play();
         }
@@ -62,6 +73,7 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
         ism.UpdateIdleState();
         vp.Pause();
         isSlide = true;
+        _videoProgressOnPointerDown = VideoSlider.value;
     }
 
     public void OnPointerUp(PointerEventData args)
@@ -69,13 +81,28 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
         ism.UpdateIdleState();
         float frame = (float)VideoSlider.value * (float)vp.frameCount;
         vp.frame = (long)frame;
-        isSlide = false;
-        vp.Play();
-    }
-
-    public void Volume()
-    {
-        _as.volume = AudioSlider.value;
+        if (Mathf.Abs(_videoProgressOnPointerDown - VideoSlider.value) < 0.1f)
+        {
+            counter++;
+            _image.sprite = sprite[counter % 2];
+            if (isStopped == false)
+            {
+                vp.Pause();
+                isSlide = true;
+                isStopped = true;
+            }
+            else
+            {
+                isStopped = false;
+                isSlide = false;
+                vp.Play();
+            }
+        }
+        else
+        {
+            isSlide = false;
+            vp.Play();
+        }
     }
     #endregion
 }

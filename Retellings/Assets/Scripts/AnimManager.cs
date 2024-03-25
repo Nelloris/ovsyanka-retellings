@@ -37,7 +37,7 @@ public class AnimManager : MonoBehaviour
     private Animator[] infoPanelAnimators;
     private Animator[] videoPanelAnimators;
     private Animator[] factsPanelAnimators;
-    private int CurrentScene = 0;
+    private int CurrentScene = 1;
     private IdleStateManager ism;
     #endregion
 
@@ -108,25 +108,65 @@ public class AnimManager : MonoBehaviour
     public void ToTheInfo()
     {
         ism.UpdateIdleState();
-        CurrentScene = 1;
-        
-        //Hiding previous UI elements and panel
-        foreach (Animator an in previewPanelAnimators)
+        if (CurrentScene == 1)
         {
-            AnimationStateSwitch(an);
-        }
+            //Hiding previous UI elements and panel
+            foreach (Animator an in previewPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
 
-        //Showing next UI elements and panel
-        infoPanel.SetActive(true);
-        foreach (Animator an in infoPanelAnimators)
-        {
-            AnimationStateSwitch(an);
+            //Showing next UI elements and panel
+            infoPanel.SetActive(true);
+            foreach (Animator an in infoPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
         }
+        if (CurrentScene == 2)
+        {
+            //Hiding previous UI elements and panel
+            foreach (Animator an in videoPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
+            StartCoroutine(PanelSwitchDelayed(videoPanel, 0.5f));
+
+            //Showing next UI elements and panel
+            infoPanel.SetActive(true);
+            foreach (Animator an in infoPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
+        }
+        if (CurrentScene == 3)
+        {
+            //Showing next UI elements and panel
+            AnimationStateSwitch(videoFactButtonAnimator);
+            foreach (Animator an in factsPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
+            for (int i = 0; i < factsAnimator.Length; i++)
+            {
+                var icon = factsAnimator[i];
+                AnimationStateSwitch(icon);
+            }
+            StartCoroutine(PanelSwitchDelayed(factsPanel, 0.5f));
+
+            //Showing next UI elements and panel
+            infoPanel.SetActive(true);
+            foreach (Animator an in infoPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
+        }
+        CurrentScene = 1;
     }
     public void ToTheVideo()
     {
         ism.UpdateIdleState();
-        CurrentScene = 2;
+        
 
         //Hiding previous UI elements and panel
         foreach (Animator an in infoPanelAnimators)
@@ -141,10 +181,12 @@ public class AnimManager : MonoBehaviour
         {
             AnimationStateSwitch(an);
         }
+        CurrentScene = 2;
 
     }
     public void ToTheFacts()
     {
+        
         ism.UpdateIdleState();
         if (CurrentScene == 1)
         {

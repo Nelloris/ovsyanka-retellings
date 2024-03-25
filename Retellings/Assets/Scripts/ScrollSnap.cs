@@ -2,24 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GG.Infrastructure.Utils.Swipe;
 
 public class ScrollSnap : MonoBehaviour
 {
     #region Variables
     [SerializeField] private Color[] colors;
     [SerializeField] private GameObject scrollbar, imageContent;
-
-    private float scroll_pos = 0;
-
+    int btnNumber;
+    [SerializeField] private SwipeListener swipeListener;
+    [SerializeField] private int currentScrollPosition = 0;
+    public float scroll_pos = 0;
     private IdleStateManager ism;
     float[] pos;
     private bool runIt = false;
     private float time;
     private Button takeTheBtn;
-    int btnNumber;
     #endregion
 
     #region Main
+    public void ResetCurrentScrollPos()
+    {
+        currentScrollPosition = 0;
+        scroll_pos = 0;
+    }
     private void Start()
     {
         ism = GameObject.Find("IdleStateManager").GetComponent<IdleStateManager>();
@@ -49,7 +55,6 @@ public class ScrollSnap : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             ism.UpdateIdleState();
-            scroll_pos = scrollbar.GetComponent<Scrollbar>().value;
         }
         else
         {
@@ -83,17 +88,14 @@ public class ScrollSnap : MonoBehaviour
                 }
             }
         }
-
-
     }
-
     private void Scroll(float distance, float[] pos, Button btn)
     {
         for (int i = 0; i < pos.Length; i++)
         {
             if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
             {
-                scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[btnNumber], 3f * Time.deltaTime);
+                scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[btnNumber], Time.deltaTime);
             }
         }
 
@@ -118,9 +120,40 @@ public class ScrollSnap : MonoBehaviour
             }
         }
     }
+    private void OnSwipe(string swipe)
+    {
+        switch (swipe)
+        {
+            case "Left":
+                if (currentScrollPosition < pos.Length - 1)
+                {
+                    currentScrollPosition += 1;
+                    scroll_pos = (pos[currentScrollPosition]);
+                }
+                break;
+
+            case "Right":
+                if (currentScrollPosition > 0)
+                {
+                    currentScrollPosition -= 1;
+                    scroll_pos = (pos[currentScrollPosition]);
+                }
+                break;
+        }
+        
+    }
+    private void OnEnable()
+    {
+        swipeListener.OnSwipe.AddListener(OnSwipe);
+    }
+    private void OnDisable()
+    {
+        swipeListener.OnSwipe.RemoveListener(OnSwipe);
+    }
     public void OnElementClicked(int targtPos)
     {
         ism.UpdateIdleState();
+        currentScrollPosition = targtPos;
         scroll_pos = (pos[targtPos]);
     }
     #endregion
