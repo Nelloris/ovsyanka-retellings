@@ -3,7 +3,6 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Video;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
@@ -30,6 +29,9 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     {
         ism = GameObject.Find("IdleStateManager").GetComponent<IdleStateManager>();
         VideoSlider = GetComponent<Slider>();
+        _image.sprite = sprite[0];
+        VideoSlider.value = 0;
+        vp.frame = 0;
     }
 
     void FixedUpdate()
@@ -68,8 +70,18 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
         }
     }
 
+    public void Reset()
+    {
+        vp.Play();
+        _image.sprite = sprite[0];
+        VideoSlider.value = 0;
+        vp.frame = 0;
+    }
+
     public void OnPointerDown(PointerEventData args)
     {
+        counter++;
+        _image.sprite = sprite[counter % 2];
         ism.UpdateIdleState();
         vp.Pause();
         isSlide = true;
@@ -83,8 +95,6 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
         vp.frame = (long)frame;
         if (Mathf.Abs(_videoProgressOnPointerDown - VideoSlider.value) < 0.1f)
         {
-            counter++;
-            _image.sprite = sprite[counter % 2];
             if (isStopped == false)
             {
                 vp.Pause();
@@ -100,6 +110,12 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
         }
         else
         {
+            if (_image.sprite != sprite[counter % 1])
+            {
+                counter++;
+                _image.sprite = sprite[counter % 2];
+            }
+            isStopped = false;
             isSlide = false;
             vp.Play();
         }

@@ -1,0 +1,5 @@
+C:/GitHub/ovsyanka-retellings/Retellings/.utmp/RelWithDebInfo/1u4b6wz6/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/GitHub/ovsyanka-retellings/Retellings/.utmp/RelWithDebInfo/1u4b6wz6/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+C:/GitHub/ovsyanka-retellings/Retellings/.utmp/RelWithDebInfo/1u4b6wz6/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/GitHub/ovsyanka-retellings/Retellings/.utmp/RelWithDebInfo/1u4b6wz6/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+C:/GitHub/ovsyanka-retellings/Retellings/.utmp/RelWithDebInfo/1u4b6wz6/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir

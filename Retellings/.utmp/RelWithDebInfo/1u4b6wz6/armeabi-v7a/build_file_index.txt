@@ -1,0 +1,2 @@
+C:\GitHub\ovsyanka-retellings\Retellings\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\GitHub\ovsyanka-retellings\Retellings\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\FramePacing\CMakeLists.txt

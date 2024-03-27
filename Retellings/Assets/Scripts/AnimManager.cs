@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AnimManager : MonoBehaviour
 {
@@ -37,7 +38,9 @@ public class AnimManager : MonoBehaviour
     private Animator[] infoPanelAnimators;
     private Animator[] videoPanelAnimators;
     private Animator[] factsPanelAnimators;
-    private int CurrentScene = 1;
+
+    private GameObject eventSystem;
+    private int CurrentScene = 0;
     private IdleStateManager ism;
     #endregion
 
@@ -45,6 +48,7 @@ public class AnimManager : MonoBehaviour
     #region MainMethods
     private void Start()
     {
+        eventSystem = GameObject.Find("EventSystem");
         ism = GameObject.Find("IdleStateManager").GetComponent<IdleStateManager>();
 
         previewButtonAnimator = GameObject.Find("previewButton").GetComponent<Animator>();
@@ -108,7 +112,7 @@ public class AnimManager : MonoBehaviour
     public void ToTheInfo()
     {
         ism.UpdateIdleState();
-        if (CurrentScene == 1)
+        if (CurrentScene == 0)
         {
             //Hiding previous UI elements and panel
             foreach (Animator an in previewPanelAnimators)
@@ -161,12 +165,12 @@ public class AnimManager : MonoBehaviour
                 AnimationStateSwitch(an);
             }
         }
+
         CurrentScene = 1;
     }
     public void ToTheVideo()
     {
         ism.UpdateIdleState();
-        
 
         //Hiding previous UI elements and panel
         foreach (Animator an in infoPanelAnimators)
@@ -186,7 +190,6 @@ public class AnimManager : MonoBehaviour
     }
     public void ToTheFacts()
     {
-        
         ism.UpdateIdleState();
         if (CurrentScene == 1)
         {
@@ -306,13 +309,19 @@ public class AnimManager : MonoBehaviour
     public void AnimationStateSwitch(Animator an)
     {
         if (an.GetBool("Is") == false) { an.SetBool("Is", true); } else { an.SetBool("Is", false); }
-        
     }
-
     IEnumerator PanelSwitchDelayed(GameObject go, float Delay)
     {
         yield return new WaitForSeconds(Delay);
         if (go.activeSelf == true) { go.SetActive(false); } else { go.SetActive(true); }
+    }
+    public void EventSystemOnInvoke()
+    {
+        Invoke("EventSystemOn", 0.5f);
+    }
+    void EventSystemOn()
+    {
+        eventSystem.SetActive(true);
     }
     #endregion
     #endregion
