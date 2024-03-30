@@ -1,30 +1,35 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class AnimManager : MonoBehaviour
 {
     #region Variables
+
+    #region Serializable Fields
     [Header("AnimationManager Variables")]
     [SerializeField] private GameObject previewPanel;
+    [SerializeField] private GameObject infoPanel;
+    [SerializeField] private GameObject videoPanel;
+    [SerializeField] private GameObject factsPanel;
+    #endregion
+
+    #region Private Fields
     private Animator previewButtonAnimator;
     private Animator bookIconAnimator;
-
-    [SerializeField] private GameObject infoPanel;
+    
     private Animator mainLabelAnimator;
     private Animator yearsTextAnimator;
     private Animator mainTextAnimator;
     private Animator infoButtonAnimator;
     private Animator factsIconsAnimator;
     private Animator factsTextAnimator;
-
-    [SerializeField] private GameObject videoPanel;
+    
     private Animator videoSliderAnimatorVideoPanel;
     private Animator homeButtonAnimatorVideoPanel;
     private Animator audioButtonAnimatorVideoPanel;
+    private Animator currentTimeTextAnimatorVideoPanel;
     private Animator videoAnimator;
-
-    [SerializeField] private GameObject factsPanel;
+    
     private Animator factsIndicatorsAnimator;
     private Animator[] factsAnimator;
     private Animator videoSliderAnimatorFactsPanel;
@@ -32,6 +37,7 @@ public class AnimManager : MonoBehaviour
     private Animator audioButtonAnimatorFactsPanel;
     private Animator videoFactAnimator;
     private Animator videoFactButtonAnimator;
+    private Animator currentTimeTextAnimatorFactsPanel;
     private Animator closeVideoFactButtonAnimator;
 
     private Animator[] previewPanelAnimators;
@@ -44,7 +50,10 @@ public class AnimManager : MonoBehaviour
     private IdleStateManager ism;
     #endregion
 
+    #endregion
+
     #region Main
+
     #region MainMethods
     private void Start()
     {
@@ -67,6 +76,7 @@ public class AnimManager : MonoBehaviour
         videoSliderAnimatorVideoPanel = GameObject.Find("videoSliderVideoPanel").GetComponent<Animator>();
         homeButtonAnimatorVideoPanel = GameObject.Find("homeButtonVideoPanel").GetComponent<Animator>();
         audioButtonAnimatorVideoPanel = GameObject.Find("audioButtonVideoPanel").GetComponent<Animator>();
+        currentTimeTextAnimatorVideoPanel = GameObject.Find("currentTimeTextVideoPanel").GetComponent<Animator>();
         videoAnimator = GameObject.Find("VideoPanelPlayer").GetComponent<Animator>();
         videoPanel.SetActive(false);
 
@@ -79,6 +89,7 @@ public class AnimManager : MonoBehaviour
         closeVideoFactButtonAnimator = GameObject.Find("closeVideoFactButton").GetComponent<Animator>();
         videoFactButtonAnimator = GameObject.Find("videoFactButton").GetComponent<Animator>();
         videoFactAnimator = GameObject.Find("VideoFactPlayer").GetComponent<Animator>();
+        currentTimeTextAnimatorFactsPanel = GameObject.Find("currentTimeTextFactsPanel").GetComponent<Animator>();
         videoFactAnimator.gameObject.SetActive(false);
         factsPanel.SetActive(false);
 
@@ -97,14 +108,15 @@ public class AnimManager : MonoBehaviour
         videoPanelAnimators = new Animator[] { 
             videoSliderAnimatorVideoPanel, 
             homeButtonAnimatorVideoPanel, 
-            audioButtonAnimatorVideoPanel, 
+            audioButtonAnimatorVideoPanel,
+            currentTimeTextAnimatorVideoPanel,
             videoAnimator };
 
         factsPanelAnimators = new Animator[] { 
             factsIndicatorsAnimator, 
             homeButtonAnimatorFactsPanel, 
             audioButtonAnimatorFactsPanel,
-            videoFactButtonAnimator};
+            videoFactButtonAnimator };
     }
     #endregion
 
@@ -289,6 +301,7 @@ public class AnimManager : MonoBehaviour
         AnimationStateSwitch(videoFactAnimator);
         AnimationStateSwitch(videoSliderAnimatorFactsPanel);
         AnimationStateSwitch(closeVideoFactButtonAnimator);
+        AnimationStateSwitch(currentTimeTextAnimatorFactsPanel);
     }
     
     public void VideoFactHide(GameObject videoFactVideo)
@@ -300,6 +313,7 @@ public class AnimManager : MonoBehaviour
             AnimationStateSwitch(videoFactAnimator);
             AnimationStateSwitch(videoSliderAnimatorFactsPanel);
             AnimationStateSwitch(closeVideoFactButtonAnimator);
+            AnimationStateSwitch(currentTimeTextAnimatorFactsPanel);
         }
     }
 
@@ -324,5 +338,6 @@ public class AnimManager : MonoBehaviour
         eventSystem.SetActive(true);
     }
     #endregion
+
     #endregion
 }
