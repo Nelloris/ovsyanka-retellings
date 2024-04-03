@@ -4,33 +4,33 @@ using UnityEngine.UI;
 public class VolumeButtonController : MonoBehaviour
 {
     #region Variables
-    [SerializeField] private Sprite[] sprites;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private Image image;
+    [SerializeField] private Sprite[] _sprites;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private Image _image;
 
-    int counter = 0;
+    private int _counter = 0;
     #endregion
 
     #region Main
     private void Start()
     {
-        image = GetComponent<Image>();
+        _image = GetComponent<Image>();
     }
     public void SwitchSound()
     {
-        counter++;
-        image.sprite = sprites[counter % 3];
-        if (counter % 3 == 0)
+        _counter++;
+        _image.sprite = _sprites[_counter % 3];
+        if (_counter % 3 == 0)
         {
-            audioSource.volume = 1;
+            _audioSource.volume = 1;
         }
-        else if (counter % 3 == 1)
+        else if (_counter % 3 == 1)
         {
-            audioSource.volume = 0.5f;
+            _audioSource.volume = 0.5f;
         }
-        else if (counter % 3 == 2)
+        else if (_counter % 3 == 2)
         {
-            audioSource.volume = 0.0f;
+            _audioSource.volume = 0.0f;
         }
     }
     #endregion

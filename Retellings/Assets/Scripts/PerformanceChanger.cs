@@ -5,10 +5,11 @@ using UnityEngine.UI;
 public class PerformanceChanger : MonoBehaviour
 {
     #region Variables
-    [SerializeField] private int targetFrameRate = 30;
-    [SerializeField] private int vSyncCount = 0;
-    public Text textFps;
-    private Dictionary<int, string> CachedNumberStrings = new();
+    [SerializeField] private int _targetFrameRate = 60;
+    [SerializeField] private int _vSyncCount = 0;
+    [SerializeField] private Text _textDebugFps;
+
+    private Dictionary<int, string> _cachedNumberStrings = new();
     private int[] _frameRateSamples;
     private int _cacheNumbersAmount = 300;
     private int _averageFromAmount = 30;
@@ -17,29 +18,29 @@ public class PerformanceChanger : MonoBehaviour
     #endregion
 
     #region Main
+    
     void Awake()
     {
-        // Cache strings and create array
         {
             for (int i = 0; i < _cacheNumbersAmount; i++)
             {
-                CachedNumberStrings[i] = i.ToString();
+                _cachedNumberStrings[i] = i.ToString();
             }
             _frameRateSamples = new int[_averageFromAmount];
         }
+
         QualitySettings.SetQualityLevel(0);
-        QualitySettings.vSyncCount = vSyncCount;
-        Application.targetFrameRate = targetFrameRate;
+        QualitySettings.vSyncCount = _vSyncCount;
+        Application.targetFrameRate = _targetFrameRate;
     }
+
     void Update()
     {
-        // Sample
         {
-            var currentFrame = (int)Mathf.Round(1f / Time.smoothDeltaTime); // If your game modifies Time.timeScale, use unscaledDeltaTime and smooth manually (or not).
+            var currentFrame = (int)Mathf.Round(1f / Time.smoothDeltaTime);
             _frameRateSamples[_averageCounter] = currentFrame;
         }
 
-        // Average
         {
             var average = 0f;
 
@@ -52,16 +53,16 @@ public class PerformanceChanger : MonoBehaviour
             _averageCounter = (_averageCounter + 1) % _averageFromAmount;
         }
 
-        // Assign to UI
         {
-            textFps.text = _currentAveraged switch
+            _textDebugFps.text = _currentAveraged switch
             {
-                var x when x >= 0 && x < _cacheNumbersAmount => CachedNumberStrings[x],
+                var x when x >= 0 && x < _cacheNumbersAmount => _cachedNumberStrings[x],
                 var x when x >= _cacheNumbersAmount => $"> {_cacheNumbersAmount}",
                 var x when x < 0 => "< 0",
                 _ => "?"
             };
         }
     }
-        #endregion
-    }
+
+    #endregion
+}

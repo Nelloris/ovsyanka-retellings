@@ -11,23 +11,23 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
 
     #region Serializable Fields
     [Header("VideoManager Variables")]
-    [SerializeField] private VideoPlayer vp;
-    [SerializeField] private AudioSource _as;
-    [SerializeField] private AnimManager am;
-    [SerializeField] private UnityEvent _onEnd;
+    [SerializeField] private VideoPlayer _videoPlayer;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AnimManager _animationManager;
+    [SerializeField] private UnityEvent _onVideoEnded;
     [SerializeField] private Image _image;
-    [SerializeField] private Sprite[] sprite;
+    [SerializeField] private Sprite[] _sprites;
     [SerializeField] private TextMeshProUGUI _currentTimeText;
     #endregion
 
     #region Private Fields
-    private int counter;
+    private int _counter;
     private float _videoProgressOnPointerDown;
-    private IdleStateManager ism;
-    private Slider VideoSlider;
-    private bool isSlide = false;
-    private bool isEnded { set; get; } = false;
-    private bool isStopped;
+    private IdleStateManager _idleStateManager;
+    private Slider _videoSlider;
+    private bool _isSlide = false;
+    private bool _isEnded { set; get; } = false;
+    private bool _isStopped;
     #endregion
 
     #endregion
@@ -37,26 +37,26 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     #region Main Methods
     void Start()
     {
-        ism = GameObject.Find("IdleStateManager").GetComponent<IdleStateManager>();
-        VideoSlider = GetComponent<Slider>();
-        _image.sprite = sprite[0];
-        VideoSlider.value = 0;
-        vp.frame = 0;
+        _idleStateManager = GameObject.Find("IdleStateManager").GetComponent<IdleStateManager>();
+        _videoSlider = GetComponent<Slider>();
+        _image.sprite = _sprites[0];
+        _videoSlider.value = 0;
+        _videoPlayer.frame = 0;
     }
     void FixedUpdate()
     {
-        if (!isSlide && vp.isPlaying)
+        if (!_isSlide && _videoPlayer.isPlaying)
         {
-            VideoSlider.value = (float)vp.frame / (float)vp.frameCount;
+            _videoSlider.value = (float)_videoPlayer.frame / (float)_videoPlayer.frameCount;
         }
-        if (VideoSlider.value >= 0.999 && isEnded == false && isSlide == false)
+        if (_videoSlider.value >= 0.999 && _isEnded == false && _isSlide == false)
         {
-            isEnded = true;
-            _onEnd.Invoke();
+            _isEnded = true;
+            _onVideoEnded.Invoke();
         }
-        if (VideoSlider.value < 0.999 && isEnded == true)
+        if (_videoSlider.value < 0.999 && _isEnded == true)
         {
-            isEnded = false;
+            _isEnded = false;
         }
     }
     #endregion
@@ -64,43 +64,43 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     #region Input Methods
     public void OnPointerDown(PointerEventData args)
     {
-        counter++;
-        _image.sprite = sprite[counter % 2];
-        ism.UpdateIdleState();
-        vp.Pause();
-        isSlide = true;
-        _videoProgressOnPointerDown = VideoSlider.value;
+        _counter++;
+        _image.sprite = _sprites[_counter % 2];
+        _idleStateManager.UpdateIdleState();
+        _videoPlayer.Pause();
+        _isSlide = true;
+        _videoProgressOnPointerDown = _videoSlider.value;
     }
     public void OnPointerUp(PointerEventData args)
     {
-        ism.UpdateIdleState();
-        float frame = (float)VideoSlider.value * (float)vp.frameCount;
-        vp.frame = (long)frame;
-        if (Mathf.Abs(_videoProgressOnPointerDown - VideoSlider.value) < 0.1f)
+        _idleStateManager.UpdateIdleState();
+        float frame = (float)_videoSlider.value * (float)_videoPlayer.frameCount;
+        _videoPlayer.frame = (long)frame;
+        if (Mathf.Abs(_videoProgressOnPointerDown - _videoSlider.value) < 0.1f)
         {
-            if (isStopped == false)
+            if (_isStopped == false)
             {
-                vp.Pause();
-                isSlide = true;
-                isStopped = true;
+                _videoPlayer.Pause();
+                _isSlide = true;
+                _isStopped = true;
             }
             else
             {
-                isStopped = false;
-                isSlide = false;
-                vp.Play();
+                _isStopped = false;
+                _isSlide = false;
+                _videoPlayer.Play();
             }
         }
         else
         {
-            if (_image.sprite != sprite[counter % 1])
+            if (_image.sprite != _sprites[_counter % 1])
             {
-                counter++;
-                _image.sprite = sprite[counter % 2];
+                _counter++;
+                _image.sprite = _sprites[_counter % 2];
             }
-            isStopped = false;
-            isSlide = false;
-            vp.Play();
+            _isStopped = false;
+            _isSlide = false;
+            _videoPlayer.Play();
         }
     }
     #endregion
@@ -108,33 +108,33 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     #region Other Methods
     public void PlayButton()
     {
-        counter++;
-        _image.sprite = sprite[counter % 2];
-        ism.UpdateIdleState();
-        if (vp.isPlaying)
+        _counter++;
+        _image.sprite = _sprites[_counter % 2];
+        _idleStateManager.UpdateIdleState();
+        if (_videoPlayer.isPlaying)
         {
-            vp.Pause();
-            isSlide = true;
-            isStopped = true;
+            _videoPlayer.Pause();
+            _isSlide = true;
+            _isStopped = true;
         }
         else
         {
-            isStopped = false;
-            isSlide = false;
-            vp.Play();
+            _isStopped = false;
+            _isSlide = false;
+            _videoPlayer.Play();
         }
     }
     public void Reset()
     {
-        vp.Play();
-        _image.sprite = sprite[0];
-        VideoSlider.value = 0;
-        vp.frame = 0;
+        _videoPlayer.Play();
+        _image.sprite = _sprites[0];
+        _videoSlider.value = 0;
+        _videoPlayer.frame = 0;
     }
     public void UpdateTextUI()
     {
-        string minutes = Mathf.Floor((int)vp.time / 60).ToString("00");
-        string seconds = ((int)vp.time % 60).ToString("00");
+        string minutes = Mathf.Floor((int)_videoPlayer.time / 60).ToString("00");
+        string seconds = ((int)_videoPlayer.time % 60).ToString("00");
 
         _currentTimeText.text = minutes + ":" + seconds;
     }

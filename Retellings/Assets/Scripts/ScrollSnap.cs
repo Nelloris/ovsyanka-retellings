@@ -7,95 +7,96 @@ using GG.Infrastructure.Utils.Swipe;
 public class ScrollSnap : MonoBehaviour
 {
     #region Variables
-    [SerializeField] private Color[] colors;
-    [SerializeField] private GameObject scrollbar, imageContent;
-    int btnNumber;
-    [SerializeField] private SwipeListener swipeListener;
-    [SerializeField] private int currentScrollPosition = 0;
-    public float scroll_pos = 0;
-    private IdleStateManager ism;
-    float[] pos;
-    private bool runIt = false;
-    private float time;
-    private Button takeTheBtn;
+    [SerializeField] private Color[] _colors;
+    [SerializeField] private GameObject _scrollbar, _imageContent;
+    [SerializeField] private SwipeListener _swipeListener;
+    [SerializeField] private int _currentScrollPosition = 0;
+
+    private int _buttonNumber;
+    private float _scrollPos = 0;
+    private IdleStateManager _idleStateManager;
+    private float[] _panelsPositions;
+    private bool _runIt = false;
+    private float _time;
+    private Button _takeTheButton;
     #endregion
 
     #region Main
     public void ResetCurrentScrollPos()
     {
-        currentScrollPosition = 0;
-        scroll_pos = 0;
+        _currentScrollPosition = 0;
+        _scrollPos = 0;
     }
     private void Start()
     {
-        ism = GameObject.Find("IdleStateManager").GetComponent<IdleStateManager>();
+        _idleStateManager = GameObject.Find("IdleStateManager").GetComponent<IdleStateManager>();
     }
     void FixedUpdate()
     {
-        pos = new float[transform.childCount];
-        float distance = 1f / (pos.Length - 1f);
+        _panelsPositions = new float[transform.childCount];
+        float distance = 1f / (_panelsPositions.Length - 1f);
 
-        if (runIt)
+        if (_runIt)
         {
-            Scroll(distance, pos, takeTheBtn);
-            time += Time.deltaTime;
+            Scroll(distance, _panelsPositions, _takeTheButton);
+            _time += Time.deltaTime;
 
-            if (time > 1f)
+            if (_time > 1f)
             {
-                time = 0;
-                runIt = false;
+                _time = 0;
+                _runIt = false;
             }
         }
 
-        for (int i = 0; i < pos.Length; i++)
+        for (int i = 0; i < _panelsPositions.Length; i++)
         {
-            pos[i] = distance * i;
+            _panelsPositions[i] = distance * i;
         }
 
         if (Input.GetMouseButton(0))
         {
-            ism.UpdateIdleState();
+            _idleStateManager.UpdateIdleState();
         }
         else
         {
-            for (int i = 0; i < pos.Length; i++)
+            for (int i = 0; i < _panelsPositions.Length; i++)
             {
-                if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
+                if (_scrollPos < _panelsPositions[i] + (distance / 2) && _scrollPos > _panelsPositions[i] - (distance / 2))
                 {
-                    scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.1f);
+                    _scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(_scrollbar.GetComponent<Scrollbar>().value, _panelsPositions[i], 0.1f);
                 }
             }
         }
 
 
-        for (int i = 0; i < pos.Length; i++)
+        for (int i = 0; i < _panelsPositions.Length; i++)
         {
-            if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
+            if (_scrollPos < _panelsPositions[i] + (distance / 2) && _scrollPos > _panelsPositions[i] - (distance / 2))
             {
                 transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
-                imageContent.transform.GetChild(i).localScale = Vector2.Lerp(imageContent.transform.GetChild(i).localScale, new Vector2(1.2f, 1.2f), 0.1f);
-                imageContent.transform.GetChild(i).GetComponent<Image>().color = colors[1];
-                transform.GetChild(i).GetComponent<Image>().color = colors[1];
-                for (int j = 0; j < pos.Length; j++)
+                _imageContent.transform.GetChild(i).localScale = Vector2.Lerp(_imageContent.transform.GetChild(i).localScale, new Vector2(1.2f, 1.2f), 0.1f);
+                _imageContent.transform.GetChild(i).GetComponent<Image>().color = _colors[1];
+                transform.GetChild(i).GetComponent<Image>().color = _colors[1];
+                for (int j = 0; j < _panelsPositions.Length; j++)
                 {
                     if (j != i)
                     {
-                        imageContent.transform.GetChild(j).GetComponent<Image>().color = colors[0];
-                        transform.GetChild(j).GetComponent<Image>().color = colors[0];
-                        imageContent.transform.GetChild(j).localScale = Vector2.Lerp(imageContent.transform.GetChild(j).localScale, new Vector2(0.8f, 0.8f), 0.1f);
+                        _imageContent.transform.GetChild(j).GetComponent<Image>().color = _colors[0];
+                        transform.GetChild(j).GetComponent<Image>().color = _colors[0];
+                        _imageContent.transform.GetChild(j).localScale = Vector2.Lerp(_imageContent.transform.GetChild(j).localScale, new Vector2(0.8f, 0.8f), 0.1f);
                         transform.GetChild(j).localScale = Vector2.Lerp(transform.GetChild(j).localScale, new Vector2(0.8f, 0.8f), 0.1f);
                     }
                 }
             }
         }
     }
-    private void Scroll(float distance, float[] pos, Button btn)
+    private void Scroll(float distance, float[] _panelsPositions, Button btn)
     {
-        for (int i = 0; i < pos.Length; i++)
+        for (int i = 0; i < _panelsPositions.Length; i++)
         {
-            if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
+            if (_scrollPos < _panelsPositions[i] + (distance / 2) && _scrollPos > _panelsPositions[i] - (distance / 2))
             {
-                scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[btnNumber], Time.deltaTime);
+                _scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(_scrollbar.GetComponent<Scrollbar>().value, _panelsPositions[_buttonNumber], Time.deltaTime);
             }
         }
 
@@ -112,11 +113,11 @@ public class ScrollSnap : MonoBehaviour
         {
             if (btn.transform.parent.transform.GetChild(i).transform.name == "clicked")
             {
-                btnNumber = i;
-                takeTheBtn = btn;
-                time = 0;
-                scroll_pos = (pos[btnNumber]);
-                runIt = true;
+                _buttonNumber = i;
+                _takeTheButton = btn;
+                _time = 0;
+                _scrollPos = (_panelsPositions[_buttonNumber]);
+                _runIt = true;
             }
         }
     }
@@ -125,18 +126,18 @@ public class ScrollSnap : MonoBehaviour
         switch (swipe)
         {
             case "Left":
-                if (currentScrollPosition < pos.Length - 1)
+                if (_currentScrollPosition < _panelsPositions.Length - 1)
                 {
-                    currentScrollPosition += 1;
-                    scroll_pos = (pos[currentScrollPosition]);
+                    _currentScrollPosition += 1;
+                    _scrollPos = (_panelsPositions[_currentScrollPosition]);
                 }
                 break;
 
             case "Right":
-                if (currentScrollPosition > 0)
+                if (_currentScrollPosition > 0)
                 {
-                    currentScrollPosition -= 1;
-                    scroll_pos = (pos[currentScrollPosition]);
+                    _currentScrollPosition -= 1;
+                    _scrollPos = (_panelsPositions[_currentScrollPosition]);
                 }
                 break;
         }
@@ -144,17 +145,17 @@ public class ScrollSnap : MonoBehaviour
     }
     private void OnEnable()
     {
-        swipeListener.OnSwipe.AddListener(OnSwipe);
+        _swipeListener.OnSwipe.AddListener(OnSwipe);
     }
     private void OnDisable()
     {
-        swipeListener.OnSwipe.RemoveListener(OnSwipe);
+        _swipeListener.OnSwipe.RemoveListener(OnSwipe);
     }
     public void OnElementClicked(int targtPos)
     {
-        ism.UpdateIdleState();
-        currentScrollPosition = targtPos;
-        scroll_pos = (pos[targtPos]);
+        _idleStateManager.UpdateIdleState();
+        _currentScrollPosition = targtPos;
+        _scrollPos = (_panelsPositions[targtPos]);
     }
     #endregion
 }

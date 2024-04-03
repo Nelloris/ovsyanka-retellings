@@ -5,32 +5,32 @@ using UnityEngine.UI;
 public class IdleStateManager : MonoBehaviour
 {
     #region Variables
-    [SerializeField] private int idleTime;
-    [SerializeField] private Text text;
+    [SerializeField] private int _idleTime;
+    [SerializeField] private Text _debugText;
 
-    private int timeRemain;
-    private AnimManager am;
+    private int _timeRemain;
+    private AnimManager _animationManager;
     #endregion
 
     #region Main
     void Start()
     {
-        am = GameObject.Find("AnimManager").GetComponent<AnimManager>();
+        _animationManager = GameObject.Find("AnimManager").GetComponent<AnimManager>();
         UpdateIdleState();
         StartCoroutine(IdleStateClock());
     }
     public void UpdateIdleState()
     {
-        timeRemain = idleTime;
+        _timeRemain = _idleTime;
     }
     IEnumerator IdleStateClock()
     {
         yield return new WaitForSeconds(1);
-        timeRemain -= 1;
-        text.text = timeRemain.ToString();
-        if (timeRemain == 0)
+        _timeRemain -= 1;
+        _debugText.text = _timeRemain.ToString();
+        if (_timeRemain == 0)
         {
-            am.ToThePreview();
+            _animationManager.ToThePreview();
         }
         StartCoroutine(IdleStateClock());
     }
