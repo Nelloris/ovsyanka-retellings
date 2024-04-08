@@ -12,7 +12,6 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     #region Serializable Fields
     [Header("VideoManager Variables")]
     [SerializeField] private VideoPlayer _videoPlayer;
-    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AnimManager _animationManager;
     [SerializeField] private UnityEvent _onVideoEnded;
     [SerializeField] private Image _image;

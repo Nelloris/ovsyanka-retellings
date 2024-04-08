@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c0365628c909c479133f2abe6641bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTime: 60
-  text: {fileID: 0}
+  _idleTime: 60
+  _debugText: {fileID: 0}
