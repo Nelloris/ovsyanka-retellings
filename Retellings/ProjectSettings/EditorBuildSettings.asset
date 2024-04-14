@@ -5,8 +5,41 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Pereval.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/Oberton.unity
+    guid: c5f82f75ae510e7468f99aaa0fba74a4
+  - enabled: 0
+    path: Assets/Scenes/Car_Riba.unity
+    guid: 6f87b64553e89444a9ab951b36443e23
+  - enabled: 0
+    path: Assets/Scenes/Gde-to_Gremit_Voyna.unity
+    guid: b98efc1f472579444bf46167c7adeaf2
+  - enabled: 0
+    path: Assets/Scenes/Krazha.unity
+    guid: ad0c7196c2b79c34dbb87461dc242feb
+  - enabled: 0
+    path: Assets/Scenes/Pastuh_I_Postushka.unity
+    guid: 03f5c440782446d46b5ef1f4f3a8af03
+  - enabled: 0
+    path: Assets/Scenes/Pechalniy_Detektiv.unity
+    guid: eda0a61a2280c164f9b1b8f65b92c81a
+  - enabled: 0
+    path: Assets/Scenes/Posledniy_Poklon.unity
+    guid: fcf17f4f9bfbca14b911f410d1e372e6
+  - enabled: 0
+    path: Assets/Scenes/Proklyati_I_Ubiti.unity
+    guid: cd35bb3dc72cefb40ac8d3b4b805cf56
+  - enabled: 0
+    path: Assets/Scenes/Veseli_Soldat.unity
+    guid: ab5b5d367ee196d47a189594b1da962b
+  - enabled: 0
+    path: Assets/Scenes/Zateci.unity
+    guid: 8a3723169b2bf18449d263a77478943d
+  - enabled: 1
+    path: Assets/Scenes/Zvezdopad.unity
+    guid: d798b8382fdc2ac4ea50a09356808790
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

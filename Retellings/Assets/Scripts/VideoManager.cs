@@ -44,6 +44,10 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     }
     void FixedUpdate()
     {
+        if (_videoPlayer.isPlaying)
+        {
+            _idleStateManager.UpdateIdleState();
+        }
         if (!_isSlide && _videoPlayer.isPlaying)
         {
             _videoSlider.value = (float)_videoPlayer.frame / (float)_videoPlayer.frameCount;
@@ -105,6 +109,10 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     #endregion
 
     #region Other Methods
+    public void SetVideo(VideoClip videoClip)
+    {
+        _videoPlayer.clip = videoClip;
+    }
     public void PlayButton()
     {
         _counter++;

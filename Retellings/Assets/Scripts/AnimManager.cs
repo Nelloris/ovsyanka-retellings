@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class AnimManager : MonoBehaviour
@@ -36,7 +37,7 @@ public class AnimManager : MonoBehaviour
     private Animator homeButtonAnimatorFactsPanel;
     private Animator audioButtonAnimatorFactsPanel;
     private Animator videoFactAnimator;
-    private Animator videoFactButtonAnimator;
+    [SerializeField] private Animator[] videoFactButtonAnimators;
     private Animator currentTimeTextAnimatorFactsPanel;
     private Animator closeVideoFactButtonAnimator;
 
@@ -87,7 +88,6 @@ public class AnimManager : MonoBehaviour
         homeButtonAnimatorFactsPanel = GameObject.Find("homeButtonFactsPanel").GetComponent<Animator>();
         audioButtonAnimatorFactsPanel = GameObject.Find("audioButtonFactsPanel").GetComponent<Animator>();
         closeVideoFactButtonAnimator = GameObject.Find("closeVideoFactButton").GetComponent<Animator>();
-        videoFactButtonAnimator = GameObject.Find("videoFactButton").GetComponent<Animator>();
         videoFactAnimator = GameObject.Find("VideoFactPlayer").GetComponent<Animator>();
         currentTimeTextAnimatorFactsPanel = GameObject.Find("currentTimeTextFactsPanel").GetComponent<Animator>();
         videoFactAnimator.gameObject.SetActive(false);
@@ -115,8 +115,7 @@ public class AnimManager : MonoBehaviour
         factsPanelAnimators = new Animator[] { 
             factsIndicatorsAnimator, 
             homeButtonAnimatorFactsPanel, 
-            audioButtonAnimatorFactsPanel,
-            videoFactButtonAnimator };
+            audioButtonAnimatorFactsPanel };
     }
     #endregion
 
@@ -158,7 +157,15 @@ public class AnimManager : MonoBehaviour
         if (CurrentScene == 3)
         {
             //Showing next UI elements and panel
-            AnimationStateSwitch(videoFactButtonAnimator);
+            
+            if (videoFactButtonAnimators.Length > 0)
+            {
+                foreach (Animator an in videoFactButtonAnimators)
+                {
+                    AnimationStateSwitch(an);
+                }
+            }    
+            
             foreach (Animator an in factsPanelAnimators)
             {
                 AnimationStateSwitch(an);
@@ -214,7 +221,13 @@ public class AnimManager : MonoBehaviour
 
             //Showing next UI elements and panel
             factsPanel.SetActive(true);
-            AnimationStateSwitch(videoFactButtonAnimator);
+            if (videoFactButtonAnimators.Length > 0)
+            {
+                foreach (Animator an in videoFactButtonAnimators)
+                {
+                    AnimationStateSwitch(an);
+                }
+            }
             foreach (Animator an in factsPanelAnimators)
             {
                 AnimationStateSwitch(an);
@@ -235,7 +248,13 @@ public class AnimManager : MonoBehaviour
 
             //Showing next UI elements and panel
             factsPanel.SetActive(true);
-            AnimationStateSwitch(videoFactButtonAnimator);
+            if (videoFactButtonAnimators.Length > 0)
+            {
+                foreach (Animator an in videoFactButtonAnimators)
+                {
+                    AnimationStateSwitch(an);
+                }
+            }
             foreach (Animator an in factsPanelAnimators)
             {
                 AnimationStateSwitch(an);
@@ -274,7 +293,13 @@ public class AnimManager : MonoBehaviour
             {
                 AnimationStateSwitch(an);
             }
-            AnimationStateSwitch(videoFactButtonAnimator);
+            if (videoFactButtonAnimators.Length > 0)
+            {
+                foreach (Animator an in videoFactButtonAnimators)
+                {
+                    AnimationStateSwitch(an);
+                }
+            }
             for (int i = 0; i < factsAnimator.Length; i++)
             {
                 var icon = factsAnimator[i];
