@@ -38,8 +38,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Zateci.unity
     guid: 8a3723169b2bf18449d263a77478943d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Zvezdopad.unity
     guid: d798b8382fdc2ac4ea50a09356808790
+  - enabled: 1
+    path: Assets/Scenes/9May.unity
+    guid: 80473808cca77f74483730298f3cac5e
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

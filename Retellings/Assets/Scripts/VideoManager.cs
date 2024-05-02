@@ -44,6 +44,7 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
     }
     void FixedUpdate()
     {
+        UpdateTextUI();
         if (_videoPlayer.isPlaying)
         {
             _idleStateManager.UpdateIdleState();
@@ -137,6 +138,9 @@ public class VideoManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
         _image.sprite = _sprites[0];
         _videoSlider.value = 0;
         _videoPlayer.frame = 0;
+        _counter = 0;
+        _isSlide = false;
+        _isStopped = false;
     }
     public void UpdateTextUI()
     {

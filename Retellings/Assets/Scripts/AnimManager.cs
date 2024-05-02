@@ -12,6 +12,7 @@ public class AnimManager : MonoBehaviour
     [SerializeField] private GameObject infoPanel;
     [SerializeField] private GameObject videoPanel;
     [SerializeField] private GameObject factsPanel;
+    [SerializeField] private Animator[] videoFactButtonAnimators;
     #endregion
 
     #region Private Fields
@@ -24,6 +25,7 @@ public class AnimManager : MonoBehaviour
     private Animator infoButtonAnimator;
     private Animator factsIconsAnimator;
     private Animator factsTextAnimator;
+    private Animator buttonUnderInfoAnimator;
     
     private Animator videoSliderAnimatorVideoPanel;
     private Animator homeButtonAnimatorVideoPanel;
@@ -37,7 +39,6 @@ public class AnimManager : MonoBehaviour
     private Animator homeButtonAnimatorFactsPanel;
     private Animator audioButtonAnimatorFactsPanel;
     private Animator videoFactAnimator;
-    [SerializeField] private Animator[] videoFactButtonAnimators;
     private Animator currentTimeTextAnimatorFactsPanel;
     private Animator closeVideoFactButtonAnimator;
 
@@ -71,6 +72,7 @@ public class AnimManager : MonoBehaviour
         infoButtonAnimator = GameObject.Find("infoButton").GetComponent<Animator>();
         factsIconsAnimator = GameObject.Find("factsIcons").GetComponent<Animator>();
         factsTextAnimator = GameObject.Find("factsText").GetComponent<Animator>();
+        buttonUnderInfoAnimator = GameObject.Find("ButtonUnderInfo").GetComponent<Animator>();
         infoPanel.SetActive(false);
 
         videoPanel.SetActive(true);
@@ -103,7 +105,8 @@ public class AnimManager : MonoBehaviour
             mainTextAnimator, 
             infoButtonAnimator, 
             factsIconsAnimator, 
-            factsTextAnimator };
+            factsTextAnimator,
+            buttonUnderInfoAnimator};
 
         videoPanelAnimators = new Animator[] { 
             videoSliderAnimatorVideoPanel, 
@@ -135,7 +138,8 @@ public class AnimManager : MonoBehaviour
             infoPanel.SetActive(true);
             foreach (Animator an in infoPanelAnimators)
             {
-                AnimationStateSwitch(an);
+                StartCoroutine(AnimationStateSwitchDelayed(an, 0.8f));
+                //AnimationStateSwitch(an);
             }
         }
         if (CurrentScene == 2)
@@ -164,8 +168,15 @@ public class AnimManager : MonoBehaviour
                 {
                     AnimationStateSwitch(an);
                 }
-            }    
-            
+            }
+            if (videoFactButtonAnimators.Length > 0)
+            {
+                for (int i = 0; i < videoFactButtonAnimators.Length; i++)
+                {
+                    var icon = videoFactButtonAnimators[i];
+                    AnimationStateSwitch(icon);
+                }
+            }
             foreach (Animator an in factsPanelAnimators)
             {
                 AnimationStateSwitch(an);
@@ -221,13 +232,6 @@ public class AnimManager : MonoBehaviour
 
             //Showing next UI elements and panel
             factsPanel.SetActive(true);
-            if (videoFactButtonAnimators.Length > 0)
-            {
-                foreach (Animator an in videoFactButtonAnimators)
-                {
-                    AnimationStateSwitch(an);
-                }
-            }
             foreach (Animator an in factsPanelAnimators)
             {
                 AnimationStateSwitch(an);
@@ -250,9 +254,11 @@ public class AnimManager : MonoBehaviour
             factsPanel.SetActive(true);
             if (videoFactButtonAnimators.Length > 0)
             {
-                foreach (Animator an in videoFactButtonAnimators)
+                for (int i = 0; i < videoFactButtonAnimators.Length; i++)
                 {
-                    AnimationStateSwitch(an);
+                    print("cock");
+                    var icon = videoFactButtonAnimators[i];
+                    AnimationStateSwitch(icon);
                 }
             }
             foreach (Animator an in factsPanelAnimators)
@@ -270,6 +276,22 @@ public class AnimManager : MonoBehaviour
     public void ToThePreview()
     {
         ism.UpdateIdleState();
+        if (CurrentScene == 1)
+        {
+            //Showing next UI elements and panel
+            foreach (Animator an in infoPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
+            StartCoroutine(PanelSwitchDelayed(infoPanel, 0.5f));
+
+            //Showing next UI elements and panel
+            previewPanel.SetActive(true);
+            foreach (Animator an in previewPanelAnimators)
+            {
+                AnimationStateSwitch(an);
+            }
+        }
         if (CurrentScene == 2)
         {
             //Hiding previous UI elements and panel
@@ -348,6 +370,12 @@ public class AnimManager : MonoBehaviour
     public void AnimationStateSwitch(Animator an)
     {
         if (an.GetBool("Is") == false) { an.SetBool("Is", true); } else { an.SetBool("Is", false); }
+    }
+    IEnumerator AnimationStateSwitchDelayed(Animator an, float Delay)
+    {
+        yield return new WaitForSeconds(Delay);
+        if (an.GetBool("Is") == false) { an.SetBool("Is", true); } else { an.SetBool("Is", false); }
+
     }
     IEnumerator PanelSwitchDelayed(GameObject go, float Delay)
     {
